@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table 652px (outer border)</title>
+    <link rel="stylesheet" href="reset.css" />
+    <style>
+      /* Center the table */
+      .container {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      table {
+        width: 650px;
+        border: 1px solid #000;
+        table-layout: fixed; /* 🔑 makes widths obey colgroup */
+        border-collapse: collapse; /* 🔑 makes borders collapse */
+      }
+      th,
+      td {
+        height: 100px;
+        vertical-align: middle;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        /* Text Styling */
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 150%;
+        letter-spacing: -0.396px;
+        /* wrapping */
+        white-space: normal;
+        text-align: center;
+      }
+      col.codigo {
+        width: 300px;
+      }
+      col.nombre {
+        width: 200px;
+      }
+      col.otros {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <table>
+        <colgroup>
+          <col class="codigo" />
+          <col class="nombre" />
+          <col class="otros" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Otros Nombres</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Terma solar completa de 6 tubos (60L) de acero inox 316 interno + acero galbanizado pintado externo; Ø58 x 1800 mm</td>
+            <td>
+              - Terma Solar de 60L Tapa Verde <br />
+              - Terma Solar de 6 Tubos Tapa Verde
+            </td>
+            <td>Terma solar de 6 tubos tapa verde</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
