@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Per-Side Borders</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px 12px;
+      }
+
+      /* Vertical dividers only */
+      table.vertical td,
+      table.vertical th {
+        border-right: 1px solid black;
+      }
+      /* Remove border from last column */
+      table.vertical tr > *:last-child {
+        border-right: none;
+      }
+
+      /* Horizontal dividers only */
+      table.horizontal td,
+      table.horizontal th {
+        border-bottom: 1px solid black;
+      }
+      /* Remove border from last row */
+      table.horizontal tr:last-child > * {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Per-Side Borders</h1>
+
+    <h2>Vertical dividers only</h2>
+    <table class="vertical">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+    </table>
+
+    <h2>Horizontal dividers only</h2>
+    <table class="horizontal">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+    </table>
+  </body>
+</html>

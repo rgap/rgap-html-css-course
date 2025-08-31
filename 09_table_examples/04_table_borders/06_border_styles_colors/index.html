@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Border Styles & Colors</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: center;
+    }
+    .solid   { border: 2px solid black; }
+    .dashed  { border: 2px dashed blue; }
+    .dotted  { border: 2px dotted red; }
+    .double  { border: 4px double green; }
+    .groove  { border: 6px groove purple; }
+    .ridge   { border: 6px ridge orange; }
+    .inset   { border: 6px inset gray; }
+    .outset  { border: 6px outset brown; }
+  </style>
+</head>
+<body>
+  <h1>Border Styles & Colors</h1>
+
+  <table>
+    <tr>
+      <td class="solid">Solid (black)</td>
+      <td class="dashed">Dashed (blue)</td>
+      <td class="dotted">Dotted (red)</td>
+    </tr>
+    <tr>
+      <td class="double">Double (green)</td>
+      <td class="groove">Groove (purple)</td>
+      <td class="ridge">Ridge (orange)</td>
+    </tr>
+    <tr>
+      <td class="inset">Inset (gray)</td>
+      <td class="outset">Outset (brown)</td>
+      <td class="solid" style="border-top: 4px solid red; border-bottom: 4px dashed blue;">
+        Mixed sides
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

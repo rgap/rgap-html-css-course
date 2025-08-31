@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML Border Attribute vs CSS Borders</title>
+    <style>
+      /* Modern CSS border styling */
+      table.css-borders {
+        border: 1px solid black; /* outer border */
+        border-collapse: collapse; /* merge inner borders */
+      }
+
+      table.css-borders th,
+      table.css-borders td {
+        border: 1px solid black; /* cell borders */
+        padding: 6px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML Border Attribute vs CSS Borders</h1>
+
+    <h2>Old HTML border attribute</h2>
+    <!-- Legacy method: border="1" -->
+    <table border="1">
+      <tr>
+        <th>Header A</th>
+        <th>Header B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+
+    <h2>Modern CSS borders</h2>
+    <table class="css-borders">
+      <tr>
+        <th>Header A</th>
+        <th>Header B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+  </body>
+</html>

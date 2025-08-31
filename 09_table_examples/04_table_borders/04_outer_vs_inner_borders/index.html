@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Outer vs Inner Borders</title>
+    <style>
+      /* Outer border only */
+      table.outer {
+        border: 2px solid black; /* box around the whole table */
+        border-collapse: collapse;
+      }
+
+      /* Inner borders only */
+      table.inner {
+        border-collapse: collapse; /* merge inner borders */
+      }
+      table.inner th,
+      table.inner td {
+        border: 1px solid black; /* only cells have borders */
+        padding: 8px 12px;
+      }
+
+      /* Both outer and inner */
+      table.both {
+        border: 2px solid black; /* outer frame */
+        border-collapse: collapse; /* merge inner borders */
+      }
+      table.both th,
+      table.both td {
+        border: 1px solid black; /* inner grid */
+        padding: 8px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Outer vs Inner Borders</h1>
+
+    <h2>Outer border only</h2>
+    <table class="outer">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+
+    <h2>Inner borders only</h2>
+    <table class="inner">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+
+    <h2>Both outer and inner borders</h2>
+    <table class="both">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Border Spacing</title>
+    <style>
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px 12px;
+      }
+
+      /* Collapsed borders (default clean grid) */
+      table.collapsed {
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+
+      /* Separate borders with equal spacing */
+      table.spacing-equal {
+        border-collapse: separate;
+        border-spacing: 12px; /* equal horizontal and vertical spacing */
+        margin-bottom: 30px;
+      }
+
+      /* Separate borders with different spacing */
+      table.spacing-custom {
+        border-collapse: separate;
+        border-spacing: 20px 6px; /* horizontal = 20px, vertical = 6px */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Border Spacing</h1>
+
+    <h2>Collapsed (no spacing)</h2>
+    <table class="collapsed">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+
+    <h2>Separate with equal spacing (12px)</h2>
+    <table class="spacing-equal">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+
+    <h2>Separate with custom spacing (20px horizontal, 6px vertical)</h2>
+    <table class="spacing-custom">
+      <tr>
+        <th>A</th>
+        <th>B</th>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </table>
+  </body>
+</html>
