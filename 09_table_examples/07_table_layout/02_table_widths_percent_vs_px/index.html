@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Widths: Percent vs PX</title>
+    <style>
+      /* Page scaffold to visualize responsiveness */
+      .container {
+        max-width: 900px; /* change this and resize window to test responsiveness */
+        padding: 0 12px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%; /* make table fill container to showcase % widths */
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px 12px;
+        text-align: left;
+      }
+
+      /* Percent-only: columns sized as fractions of table width */
+      table.percent col.col-a {
+        width: 20%;
+      } /* 20% of table width */
+      table.percent col.col-b {
+        width: 50%;
+      } /* 50% */
+      table.percent col.col-c {
+        width: 30%;
+      } /* 30% */
+
+      /* Pixel-only: columns sized in absolute pixels */
+      table.pixels col.col-a {
+        width: 160px;
+      }
+      table.pixels col.col-b {
+        width: 360px;
+      }
+      table.pixels col.col-c {
+        width: 200px;
+      }
+
+      /* Mixed: fixed utility column + flexible content columns */
+      table.mixed col.col-a {
+        width: 140px;
+      } /* fixed (e.g., code/id) */
+      table.mixed col.col-b {
+        width: 50%;
+      } /* flexible */
+      table.mixed col.col-c {
+        width: 50%;
+      } /* flexible */
+
+      /* Optional: try fixed layout to enforce widths strictly */
+      /* .use-fixed { table-layout: fixed; } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Table Widths: Percent vs PX</h1>
+
+      <h2>Percent-based columns</h2>
+      <table class="percent">
+        <!-- Percent widths are defined on <col> elements -->
+        <colgroup>
+          <col class="col-a" />
+          <col class="col-b" />
+          <col class="col-c" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>20%</th>
+            <th>50%</th>
+            <th>30%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Code P100</td>
+            <td>Scales with container size (percent width).</td>
+            <td>Flexible</td>
+          </tr>
+          <tr>
+            <td>Code P200</td>
+            <td>Resize the window to see columns grow/shrink proportionally.</td>
+            <td>Flexible</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Pixel-based columns</h2>
+      <table class="pixels">
+        <!-- Pixel widths give fixed, exact column sizes -->
+        <colgroup>
+          <col class="col-a" />
+          <col class="col-b" />
+          <col class="col-c" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>160px</th>
+            <th>360px</th>
+            <th>200px</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Code P100</td>
+            <td>Fixed pixels do not scale with container width.</td>
+            <td>Fixed</td>
+          </tr>
+          <tr>
+            <td>Code P200</td>
+            <td>If content is wider than the pixel width, browser may expand in auto layout.</td>
+            <td>Fixed</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Mixed (% + px)</h2>
+      <table class="mixed">
+        <!-- Typical pattern: a fixed utility column and flexible content columns -->
+        <colgroup>
+          <col class="col-a" />
+          <col class="col-b" />
+          <col class="col-c" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>140px</th>
+            <th>50%</th>
+            <th>50%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SKU-0001</td>
+            <td>Flexible content column</td>
+            <td>Flexible content column</td>
+          </tr>
+          <tr>
+            <td>SKU-0002</td>
+            <td>Try toggling fixed layout in CSS to enforce widths strictly.</td>
+            <td><!-- intentionally short --></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Tip: uncomment this class to test strict sizing behavior -->
+      <!-- <script>
+      // document.querySelectorAll('table').forEach(t => t.classList.add('use-fixed'));
+    </script> -->
+    </div>
+  </body>
+</html>

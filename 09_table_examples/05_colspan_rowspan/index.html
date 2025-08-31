@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Colspan & Rowspan</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 400px;
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px 12px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Colspan & Rowspan</h1>
+
+    <h2>Colspan Example (Header spans 2 columns)</h2>
+    <table>
+      <tr>
+        <th colspan="2">Product Info</th>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>Price</td>
+      </tr>
+      <tr>
+        <td>Solar Panel</td>
+        <td>$120</td>
+      </tr>
+    </table>
+
+    <h2>Rowspan Example (Category spans 2 rows)</h2>
+    <table>
+      <tr>
+        <th rowspan="2">Category</th>
+        <th>Item</th>
+        <th>Stock</th>
+      </tr>
+      <tr>
+        <td>Battery 12V 100Ah</td>
+        <td>40</td>
+      </tr>
+    </table>
+  </body>
+</html>

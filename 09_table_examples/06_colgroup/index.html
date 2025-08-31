@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Colgroup</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 600px;
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      /* Column-specific styles via <col> */
+      col.first {
+        background-color: #bcf3b3;
+        width: 250px;
+      }
+      col.second {
+        background-color: #b8d0ff;
+        width: 200px;
+      }
+      col.third {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Colgroup</h1>
+
+    <table>
+      <!-- Define columns -->
+      <colgroup>
+        <col class="first" />
+        <col class="second" />
+        <col class="third" />
+      </colgroup>
+
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Solar Panel 100W</td>
+          <td>Mono-crystalline high efficiency</td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <td>AGM Battery 12V 100Ah</td>
+          <td>Deep cycle storage</td>
+          <td>40</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

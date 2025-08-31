@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Layout Fixed</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 500px;
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px 12px;
+        text-align: left;
+      }
+
+      /* Fixed layout table */
+      table.fixed {
+        table-layout: fixed; /* obeys column widths */
+      }
+
+      /* Define column widths */
+      table.fixed th:nth-child(1),
+      table.fixed td:nth-child(1) {
+        width: 150px;
+      }
+
+      table.fixed th:nth-child(2),
+      table.fixed td:nth-child(2) {
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table Layout Fixed</h1>
+
+    <h2>Auto (default)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P100</td>
+          <td>Short text</td>
+        </tr>
+        <tr>
+          <td>P200</td>
+          <td>Very very long product description that will expand the column</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Fixed</h2>
+    <table class="fixed">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P100</td>
+          <td>Short text</td>
+        </tr>
+        <tr>
+          <td>P200</td>
+          <td>Very very long product description that will wrap inside the fixed column width</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

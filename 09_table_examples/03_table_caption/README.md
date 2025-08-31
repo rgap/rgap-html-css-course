@@ -1,4 +1,4 @@
-# Lesson 03 – Table Caption
+# Table Caption
 
 This lesson introduces the `<caption>` element for tables.
 

@@ -1,4 +1,4 @@
-# Lesson 01 – Basic Table
+# Basic Table
 
 This lesson introduces the very foundation of HTML tables.
 
