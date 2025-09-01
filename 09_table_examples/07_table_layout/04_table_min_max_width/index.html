@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Max-Width Demo</title>
+    <style>
+      table {
+        table-layout: fixed; /* respect column tracks */
+        border-collapse: collapse;
+        width: 1000px;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px 12px;
+      }
+
+      /* ⚠️ This looks like it should cap the column at 400px... */
+      col.max-col {
+        max-width: 400px;
+        background: #ffe9e6;
+      }
+
+      col.normal-col {
+        background: #e9ffe6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Table with "Max-Width" Column</h1>
+
+      <!--
+        ⚠️ Important:
+        - In CSS, `max-width` normally prevents an element from expanding past that size.
+        - But <col> is *not a real box*. It's just a hint for the table layout algorithm.
+        - Browsers IGNORE `max-width` (and `min-width`) on <col>.
+        - That means this column can still grow past 400px, even though the CSS says otherwise.
+        - If you want a true cap in tables, you must use `width` on <col>, or constrain the content inside <td>.
+        - If you want "max but shrinkable," HTML tables can't do it. Use CSS Grid with minmax().
+      -->
+
+      <table>
+        <colgroup>
+          <col class="max-col" />
+          <col class="normal-col" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>“Max-Width 400px” (ignored on col)</th>
+            <th>Normal Column</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>This column can still grow past 400px despite the max-width rule.</td>
+            <td>This column absorbs remaining space.</td>
+          </tr>
+          <tr>
+            <td>Resize wider: you’ll see this cell exceed 400px → proof that max-width on &lt;col&gt; is useless.</td>
+            <td>Still flexible.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

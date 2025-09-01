@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>White-Space Handling Examples</title>
+    <style>
+      table {
+        table-layout: fixed;
+        border-collapse: collapse;
+        width: 600px;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px;
+        vertical-align: top;
+      }
+
+      /* First table: Normal vs NoWrap */
+      col.normal-col {
+        width: 300px;
+      }
+      col.nowrap-col {
+        width: 300px;
+      }
+
+      td.normal {
+        white-space: normal; /* default wrapping */
+      }
+
+      td.nowrap {
+        white-space: nowrap; /* prevents wrapping */
+      }
+
+      /* Second table: Pre-Wrap vs Pre */
+      col.prewrap-col {
+        width: 200px;
+      }
+      col.pre-col {
+        width: 200px;
+      }
+
+      td.prewrap {
+        white-space: pre-wrap; /* preserves breaks but allows wrapping */
+      }
+      td.pre {
+        white-space: pre; /* preserves spaces & line breaks */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>White-Space Handling Examples</h1>
+
+    <!-- Table 1: Normal vs NoWrap -->
+    <h2>Normal vs NoWrap</h2>
+    <table>
+      <colgroup>
+        <col class="normal-col" />
+        <col class="nowrap-col" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Normal</th>
+          <th>NoWrap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="normal">
+            This text will wrap naturally when it reaches the edge of the cell.
+          </td>
+          <td class="nowrap">
+            This text will stay in a single line even if it overflows the cell
+            boundaries.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Table 2: Pre vs Pre-Wrap -->
+    <h2>Pre-Wrap vs Pre</h2>
+    <table>
+      <colgroup>
+        <col class="pre-col" />
+        <col class="prewrap-col" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Pre-Wrap</th>
+          <th>Pre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="prewrap">
+Line 1
+    Line 2 (indented)
+Line 3 with a long sentence that keeps going but it will wrap nicely
+          </td>
+          <td class="pre">
+Line 1
+    Line 2 (indented)
+Line 3 with a long sentence that keeps going without wrapping
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -4,16 +4,10 @@
     <meta charset="UTF-8" />
     <title>Table Widths: Percent vs PX</title>
     <style>
-      /* Page scaffold to visualize responsiveness */
-      .container {
-        max-width: 900px; /* change this and resize window to test responsiveness */
-        padding: 0 12px;
-      }
-
       table {
+        table-layout: fixed; /* respect column tracks */
         border-collapse: collapse;
-        width: 100%; /* make table fill container to showcase % widths */
-        margin-bottom: 20px;
+        width: 1000px; /* updated from 720px */
       }
       th,
       td {
@@ -25,35 +19,24 @@
       /* Percent-only: columns sized as fractions of table width */
       table.percent col.col-a {
         width: 20%;
-      } /* 20% of table width */
+      } /* 20% of 1000px = 200px */
       table.percent col.col-b {
         width: 50%;
-      } /* 50% */
+      } /* 50% of 1000px = 500px */
       table.percent col.col-c {
         width: 30%;
-      } /* 30% */
+      } /* 30% of 1000px = 300px */
 
-      /* Pixel-only: columns sized in absolute pixels */
+      /* Pixel-only: columns sized in absolute pixels (must total 1000px) */
       table.pixels col.col-a {
-        width: 160px;
+        width: 250px;
       }
       table.pixels col.col-b {
-        width: 360px;
+        width: 450px;
       }
       table.pixels col.col-c {
-        width: 200px;
+        width: 300px;
       }
-
-      /* Mixed: fixed utility column + flexible content columns */
-      table.mixed col.col-a {
-        width: 140px;
-      } /* fixed (e.g., code/id) */
-      table.mixed col.col-b {
-        width: 50%;
-      } /* flexible */
-      table.mixed col.col-c {
-        width: 50%;
-      } /* flexible */
 
       /* Optional: try fixed layout to enforce widths strictly */
       /* .use-fixed { table-layout: fixed; } */
@@ -65,7 +48,6 @@
 
       <h2>Percent-based columns</h2>
       <table class="percent">
-        <!-- Percent widths are defined on <col> elements -->
         <colgroup>
           <col class="col-a" />
           <col class="col-b" />
@@ -94,7 +76,6 @@
 
       <h2>Pixel-based columns</h2>
       <table class="pixels">
-        <!-- Pixel widths give fixed, exact column sizes -->
         <colgroup>
           <col class="col-a" />
           <col class="col-b" />
@@ -102,9 +83,9 @@
         </colgroup>
         <thead>
           <tr>
-            <th>160px</th>
-            <th>360px</th>
-            <th>200px</th>
+            <th>250px</th>
+            <th>450px</th>
+            <th>300px</th>
           </tr>
         </thead>
         <tbody>
@@ -120,40 +101,6 @@
           </tr>
         </tbody>
       </table>
-
-      <h2>Mixed (% + px)</h2>
-      <table class="mixed">
-        <!-- Typical pattern: a fixed utility column and flexible content columns -->
-        <colgroup>
-          <col class="col-a" />
-          <col class="col-b" />
-          <col class="col-c" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>140px</th>
-            <th>50%</th>
-            <th>50%</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>SKU-0001</td>
-            <td>Flexible content column</td>
-            <td>Flexible content column</td>
-          </tr>
-          <tr>
-            <td>SKU-0002</td>
-            <td>Try toggling fixed layout in CSS to enforce widths strictly.</td>
-            <td><!-- intentionally short --></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Tip: uncomment this class to test strict sizing behavior -->
-      <!-- <script>
-      // document.querySelectorAll('table').forEach(t => t.classList.add('use-fixed'));
-    </script> -->
     </div>
   </body>
 </html>

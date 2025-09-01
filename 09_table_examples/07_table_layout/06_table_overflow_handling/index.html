@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Overflow Handling — All Values</title>
+    <style>
+      table {
+        table-layout: fixed; /* required to enforce fixed widths */
+        border-collapse: collapse;
+        width: 1000px;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px;
+        vertical-align: top;
+      }
+
+      /* Column widths */
+      col {
+        width: 200px;
+      }
+
+      /* Overflow handling */
+      td.visible {
+        overflow: visible; /* Default: lets content spill out */
+        white-space: normal; /* Default wrapping */
+        background: #f9f9f9;
+      }
+
+      td.hidden {
+        overflow: hidden; /* Clips overflowing content */
+        white-space: nowrap;
+        background: #ffe9e6;
+      }
+
+      td.scroll {
+        overflow: scroll; /* Always shows scrollbars */
+        white-space: nowrap;
+        background: #e6f0ff;
+      }
+
+      td.auto {
+        overflow: auto; /* Scrollbars only if needed */
+        white-space: nowrap;
+        background: #e6ffe6;
+      }
+
+      td.clip {
+        overflow: clip; /* Like hidden but stricter (no scrollable overflow region) */
+        white-space: nowrap;
+        background: #fff3e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Table Overflow Handling — All Values</h1>
+
+      <table>
+        <colgroup>
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Visible (default)</th>
+            <th>Hidden</th>
+            <th>Scroll</th>
+            <th>Auto</th>
+            <th>Clip</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="visible">This text is extremely extremely extremely extremely long and will overflow beyond the cell.</td>
+            <td class="hidden">This text is extremely extremely extremely extremely long and will overflow beyond the cell.</td>
+            <td class="scroll">This text is long long long.</td>
+            <td class="auto">This text is extremely extremely extremely extremely long and will overflow beyond the cell.</td>
+            <td class="clip">This text is extremely extremely extremely extremely long and will overflow beyond the cell.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
