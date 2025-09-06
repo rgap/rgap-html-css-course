@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Nested Tables</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 600px;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px;
+        vertical-align: top;
+      }
+
+      /* Nested table styling */
+      table.nested {
+        width: 100%;
+        border: 1px solid #888;
+        background: #f9f9f9;
+      }
+
+      table.nested th,
+      table.nested td {
+        border: 1px solid #aaa;
+        padding: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table Nested Tables</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Solar Panel 100W</td>
+          <td>Basic panel with 18% efficiency.</td>
+        </tr>
+        <tr>
+          <td>AGM Battery 12V 100Ah</td>
+          <td>
+            <!-- Nested table inside cell -->
+            <table class="nested">
+              <thead>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Type</td>
+                  <td>Deep Cycle</td>
+                </tr>
+                <tr>
+                  <td>Weight</td>
+                  <td>28 kg</td>
+                </tr>
+                <tr>
+                  <td>Warranty</td>
+                  <td>2 years</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

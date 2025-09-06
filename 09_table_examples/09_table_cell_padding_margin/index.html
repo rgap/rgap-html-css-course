@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Cell Padding vs Margin</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        width: 500px;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px; /* default padding */
+      }
+
+      /* Extra padding example */
+      td.padded {
+        padding: 30px; /* more breathing room */
+        background: #f9f9f9;
+      }
+
+      /* Child element with margin */
+      td.with-child div {
+        margin: 20px; /* affects only inner div */
+        padding: 8px;
+        background: #e6f0ff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table Cell Padding vs Margin</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Padding</td>
+          <td class="padded">This cell has extra padding applied directly to the `td`.</td>
+        </tr>
+        <tr>
+          <td>Margin</td>
+          <td class="with-child">
+            <div>This inner `div` has margin. The cell itself does not expand with margin.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

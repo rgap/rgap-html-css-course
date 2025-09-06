@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Cellspacing vs Padding</title>
+    <style>
+      table {
+        border: 1px solid #444;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+      }
+
+      /* Padding example */
+      table.padding td {
+        padding: 12px;
+        background: #f9f9f9;
+      }
+
+      /* Border-spacing example */
+      table.spacing {
+        border-collapse: separate;
+        border-spacing: 12px;
+        background: #fff3e6;
+      }
+      table.spacing th,
+      table.spacing td {
+        padding: 6px;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table Cellspacing vs Padding</h1>
+
+    <h2>1. Cellspacing (old HTML attribute)</h2>
+    <table cellspacing="12">
+      <tr>
+        <td>Cell 1</td>
+        <td>Cell 2</td>
+      </tr>
+      <tr>
+        <td>Cell 3</td>
+        <td>Cell 4</td>
+      </tr>
+    </table>
+
+    <h2>2. Padding (CSS)</h2>
+    <table class="padding">
+      <tr>
+        <td>Cell 1</td>
+        <td>Cell 2</td>
+      </tr>
+      <tr>
+        <td>Cell 3</td>
+        <td>Cell 4</td>
+      </tr>
+    </table>
+
+    <h2>3. Border-Spacing (modern CSS replacement)</h2>
+    <table class="spacing">
+      <tr>
+        <td>Cell 1</td>
+        <td>Cell 2</td>
+      </tr>
+      <tr>
+        <td>Cell 3</td>
+        <td>Cell 4</td>
+      </tr>
+    </table>
+  </body>
+</html>
