@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Text Overflow: Ellipsis</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 800px;
+        table-layout: fixed; /* required for ellipsis to respect widths */
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px;
+        vertical-align: top;
+        width: 33%; /* equal columns */
+      }
+
+      td.wrap {
+        white-space: normal; /* default wrapping */
+        text-overflow: clip; /* default */
+        background: #f9f9f9;
+      }
+
+      td.hidden {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip; /* default */
+        background: #ffe9e6;
+      }
+
+      td.ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* adds … */
+        background: #e6f0ff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table Text Overflow: Ellipsis</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Normal Wrap</th>
+          <th>Hidden Overflow</th>
+          <th>Ellipsis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="wrap">This is some very long content that will wrap across multiple lines if it does not fit in one line.</td>
+          <td class="hidden">This is some very long content that will be clipped and disappear once it exceeds the cell width.</td>
+          <td class="ellipsis">This is some very long content that will be truncated with an ellipsis when it exceeds the cell width.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
