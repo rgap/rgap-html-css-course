@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>overflow-wrap Examples</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 200px;
+        table-layout: fixed; /* enforce equal column widths */
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 8px;
+      }
+
+      /* Default wrapping */
+      td.normal {
+        white-space: normal; /* normal wrapping */
+        overflow-wrap: normal; /* long words won't break */
+        background: #f9f9f9;
+      }
+
+      /* Break-word wrapping */
+      td.breakword {
+        white-space: normal;
+        overflow-wrap: break-word; /* long words can break mid-word */
+        background: #e6f0ff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>overflow-wrap Examples</h1>
+
+    <!-- Table 1: Normal -->
+    <h2>overflow-wrap: normal</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Normal Wrapping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="normal">ThisIsAnExtremelyLongStringThatWillNotBreakAndCanOverflowTheCellBoundary</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Table 2: Break-word -->
+    <h2>overflow-wrap: break-word</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Break Word Wrapping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="breakword">ThisIsAnExtremelyLongStringThatWillBreakBecauseOverflowWrapIsEnabled</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

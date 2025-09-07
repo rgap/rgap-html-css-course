@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 300px;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 0; /* removed default padding for consistent height */
+        /* NOTE: 'height' applies to the cell's CONTENT box only.
+           With collapsed 1px borders, the visible row becomes roughly:
+             40px (content box) + 1px shared border ≈ 41px
+           If you need EXACTLY 40px visible, you'd have to compensate
+           (e.g., td {height: 39px}) or remove borders. */
+        height: 40px; /* content box ~40px; visible row ≈ 41px */
+      }
+
+      /* Wrapper for overflow control */
+      .clip {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visible row ≈ 41px: 40px content box + ~1px collapsed border overlap.</td>
+        </tr>
+        <tr>
+          <td>
+            This is a very long description that exceeds the 40px content box. The row grows taller than the ≈ 41px minimum (content + borders) to fit
+            all the text. This is a very long description that exceeds the 40px content box. The row grows taller than the ≈ 41px minimum to fit all
+            the content.
+          </td>
+        </tr>
+        <tr>
+          <td class="clip">
+            This is another long description. It is clipped at the 40px content box (visible row ≈ 41px due to borders). This is another long
+            description. It is clipped at the 40px content box (visible row ≈ 41px).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

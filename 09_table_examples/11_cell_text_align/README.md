@@ -8,7 +8,6 @@ This lesson shows how to align text, numbers, dates, and status fields in a real
 - How to align **numeric data** (quantities, prices, totals).
 - When to use **center alignment** (codes, dates, statuses, actions).
 - How to align **column headers** (titles) separately from body cells.
-- How vertical alignment works for cells with multiple lines.
 
 ## Explanation
 
@@ -34,11 +33,6 @@ This lesson shows how to align text, numbers, dates, and status fields in a real
     - Dates
     - Status values (Pending, Shipped, Cancelled)
     - Icons, checkboxes, or action buttons
-
-- **Vertical alignment**
-  - `top` → text sticks to the top (useful for long descriptions).
-  - `middle` → default, balances content vertically.
-  - `bottom` → rare, but can align values to the bottom edge.
 
 ## How to run
 

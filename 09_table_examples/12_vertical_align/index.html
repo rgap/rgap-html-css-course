@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vertical Alignment in Table Cells</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 500px;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 10px;
+        height: 90px; /* enough height to show alignment clearly */
+      }
+
+      /* Top alignment */
+      td.top {
+        vertical-align: top;
+        background: #f9f9f9;
+      }
+
+      /* Middle alignment */
+      td.middle {
+        vertical-align: middle; /* default */
+        background: #e6f0ff;
+      }
+
+      /* Bottom alignment */
+      td.bottom {
+        vertical-align: bottom;
+        background: #ffe9e6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vertical Alignment in Table Cells</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Vertical Alignment Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="top">
+            VERTICAL: TOP
+            <br />
+            This content is aligned to the top of the cell.
+          </td>
+        </tr>
+        <tr>
+          <td class="middle">
+            VERTICAL: MIDDLE
+            <br />
+            This content is aligned to the middle of the cell.
+          </td>
+        </tr>
+        <tr>
+          <td class="bottom">
+            VERTICAL: BOTTOM
+            <br />
+            This content is aligned to the bottom of the cell.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
