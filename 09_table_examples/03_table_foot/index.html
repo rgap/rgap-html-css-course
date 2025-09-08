@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table Head, Body & Foot</title>
+    <style>
+      /* Optional: make the footer stand out a bit */
+      tfoot th,
+      tfoot td {
+        font-weight: 600;
+      }
+      /* Note: For printed pages, you can add an @media print rule
+         to repeat the table header and footer on each page. */
+    </style>
+  </head>
+  <body>
+    <h1>Table Head, Body & Foot</h1>
+
+    <table>
+      <!-- Header group -->
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <!-- Body group -->
+      <tbody>
+        <tr>
+          <td>Solar Heater</td>
+          <td>$199</td>
+        </tr>
+        <tr>
+          <td>LED Floodlight</td>
+          <td>$29</td>
+        </tr>
+      </tbody>
+
+      <!-- Footer group: summaries/totals/notes live here -->
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <td>$228</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>
