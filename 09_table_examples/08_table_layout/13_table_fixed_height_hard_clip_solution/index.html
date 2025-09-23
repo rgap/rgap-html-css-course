@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — hard clip (inner wrapper, 2×2)</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 340px; /* a bit wider for 2 columns */
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 0; /* remove default padding */
+      }
+
+      /* Hard clip by height: wrap cell contents in this block.
+         ✅ Why use it:
+            - Guarantees a strict visual row height (no auto-growth).
+            - Works with wrapped text (not limited to one line).
+         ⚠️ Disadvantages / caveats:
+            1) Content loss: extra text is simply hidden (no multi-line ellipsis).
+               Consider a "View more" pattern, tooltip, or detail panel.
+            2) Accessibility: hidden overflow isn't announced by screen readers.
+               Provide aria-label/aria-describedby or an accessible full-text path.
+            3) Discoverability: users may not realize content is clipped.
+               The title="" attr helps mouse users, but not touch/keyboard.
+            4) Copy/select behavior: selecting the cell won't copy hidden text.
+            5) Internationalization: languages with taller glyphs/line stacks may
+               wrap differently and get clipped earlier; test with your fonts.
+            6) Printing/export: some print/PDF engines may ignore clipping or
+               paginate awkwardly; verify if you need hard copies.
+            7) Tight coupling to metrics: if font-size/line-height changes via
+               user zoom or CSS, the visual number of lines that fit will change. */
+
+      /*
+      CSS can’t detect “overflow happened” on a freely wrapping block
+      and then add “…” conditionally while keeping an unconstrained number of lines
+      */
+
+      th > div,
+      td > div {
+        height: 40px; /* strict content height */
+        overflow: hidden; /* hide anything beyond 40px */
+        white-space: normal; /* allow wrapping inside */
+        padding: 0 8px; /* small horizontal breathing room */
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — hard clip (inner wrapper, 2×2)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th><div>Column A</div></th>
+          <th><div>Column B (long header that will wrap and clip inside 40px)</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div>40px + ~1px collapsed border overlap.</div>
+          </td>
+          <td>
+            <div>Header-sized cell demonstrating wrapping and hard clipping at 40px using an inner wrapper.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>This is a very long description that exceeds the 40px content box. Extra text is clipped; the row does not grow.</div>
+          </td>
+          <td>
+            <div>Another long cell — inner wrapper keeps the visual height strict (≈ 41px visible with collapsed borders).</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

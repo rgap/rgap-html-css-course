@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — single-line solution (2×2)</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 340px;            /* widened a bit so 2 columns fit this demo */
+        table-layout: fixed;     /* fixed tracks for predictable clipping */
+      }
+
+      /* Apply former td.clip behavior to ALL cells (single-line ellipsis).
+         NOTE: This 40px targets the CONTENT box of the cell.
+         With collapsed 1px borders the visible row ≈ 40px content + ~1px collapsed border overlap = ≈ 41px.
+         Caveat: table-cells participate in intrinsic table layout; in rare cases (fonts/emoji/replaced elements)
+         browsers MAY still expand the row. For 100% reliability, prefer an inner wrapper. */
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 0;                 /* remove default padding */
+        height: 40px;               /* content-box target */
+        overflow: hidden;           /* hide overflow beyond the cell box */
+        white-space: nowrap;        /* force a single line */
+        text-overflow: ellipsis;    /* show “…” when clipped */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — single-line solution (2×2)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Column A — a very long header label that will ellipsize</th>
+          <th>Column B — another long header that will be clipped</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minimum visible row ≈ 41px (40px content + ~1px shared collapsed border).</td>
+          <td>Short text.</td>
+        </tr>
+        <tr>
+          <td>
+            This is long body text that will be truncated with an ellipsis because we force a single line
+            and hide overflow inside a 40px content box.
+          </td>
+          <td>
+            Another long cell demonstrating single-line clipping in a fixed-height table cell with table-layout:fixed.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

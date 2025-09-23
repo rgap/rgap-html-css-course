@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — N-line clamp via inner divs (preserve table semantics)</title>
+    <style>
+      :root {
+        --lines: 2; /* default visible lines */
+        --lh: 20px; /* default line-height per line */
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 340px; /* a bit wider for 2 columns */
+        table-layout: fixed; /* predictable column widths */
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 0; /* let the inner div handle visual padding */
+        vertical-align: top; /* normal table-cell behavior preserved */
+        box-sizing: border-box;
+      }
+
+      /* The ONLY element that clamps is the inner wrapper */
+      .cellClamp {
+        padding: 0 8px; /* visual padding */
+        display: -webkit-box; /* required for -webkit-line-clamp */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--lines);
+        overflow: hidden; /* hide beyond N lines */
+        white-space: normal; /* allow wrapping */
+        line-height: var(--lh);
+        height: calc(var(--lines) * var(--lh)); /* fixed content-box height */
+        box-sizing: border-box;
+      }
+
+      /* Utility classes (apply to the INNER DIV, not the td/th) */
+      .l-1 {
+        --lines: 1;
+      }
+      .l-2 {
+        --lines: 2;
+      }
+      .l-3 {
+        --lines: 3;
+      }
+
+      .lh-16 {
+        --lh: 16px;
+      }
+      .lh-18 {
+        --lh: 18px;
+      }
+      .lh-20 {
+        --lh: 20px;
+      }
+      .lh-24 {
+        --lh: 24px;
+      }
+      .lh-40 {
+        --lh: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>N-line clamp via inner divs (no inline styles)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th title="Header clamps but uses inner wrapper (keeps table-cell semantics).">
+            <div class="cellClamp">Column A — a very long header label that will clamp to the configured number of lines</div>
+          </th>
+          <th title="Header clamps but uses inner wrapper (keeps table-cell semantics).">
+            <div class="cellClamp">Column B — another long header that should also be clamped consistently</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="cellClamp">Visible row ≈ (N × line-height) + ~1px (collapsed border). This cell is short and easily fits within 2 lines.</div>
+          </td>
+          <td title="Two-line clamp with defaults (--lines:2, --lh:20px)">
+            <div class="cellClamp">
+              Two-line clamp with defaults. Extra text is hidden without growing the row beyond its fixed content-box height.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <!-- Per-cell override via utility classes: 3 lines @ 18px => 54px content height (≈ 55px visible with collapsed borders) -->
+          <td title="Three-line variant (3 × 18px = 54px content height).">
+            <div class="cellClamp l-3 lh-18">
+              Three-line variant: tweak the CSS variables on the inner div using classes to control both the number of lines and the exact pixel
+              height. This keeps rows visually consistent while allowing some wrapping before clipping.
+            </div>
+          </td>
+
+          <!-- Per-cell override via utility classes: 1 line @ 40px => 40px content height (≈ 41px visible) -->
+          <td title="One-line clamp with tall line-height (strict height).">
+            <div class="cellClamp l-1 lh-40">
+              One-line clamp with strict height. Setting the classes to l-1 and lh-40 gives a tall single line; overflow is hidden.
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

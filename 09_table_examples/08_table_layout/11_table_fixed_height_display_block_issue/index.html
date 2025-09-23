@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — 2×2 (ALL cells are display:block)</title>
+    <style>
+      table {
+        border-collapse: collapse; /* has no effect once cells aren't table-cells */
+        width: 300px;
+        table-layout: fixed;
+      }
+
+      /* ERROR DEMO: force ALL cells to be block boxes.
+         Side effects:
+         - th/td are no longer table-cells → true table layout is lost (columns won't align).
+         - Border collapsing doesn't apply to these block elements.
+         Height math per cell/“row”:
+         40px content + 1px top border + 1px bottom border = **42px visible**. */
+      th,
+      td {
+        display: block;          /* intentionally break table-cell semantics */
+        border: 1px solid #444;  /* not collapsed when display:block */
+        padding: 0;              /* remove default padding */
+
+        /* Sets the CONTENT box only; visible height becomes 42px due to borders. */
+        height: 40px;
+
+        /* Allow wrapping but clip beyond 40px content height.
+           (Remember: the visual box is 42px because borders don't collapse.) */
+        overflow: hidden;
+        white-space: normal;
+
+        /* Multi-line ellipsis would require line clamping (-webkit-line-clamp). */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — 2×2 (ALL cells display:block)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Col A (columns won’t align)</th>
+          <th>Col B (stacks under Col A)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visible “row” = 40px content + 2px borders = <strong>42px</strong>.</td>
+          <td>Short text. This “column” is just another stacked block.</td>
+        </tr>
+        <tr>
+          <td>
+            Long text in a blockified cell. Content is clipped at 40px (content box),
+            but the visible height is <strong>42px</strong> due to non-collapsing borders.
+            Since all cells are <code>display:block</code>, column alignment is lost.
+          </td>
+          <td>
+            Another long cell. With blockified cells, header/body alignment and column tracks
+            (<code>&lt;colgroup&gt;</code>) are gone—prefer an inner wrapper in production instead of changing
+            the cell’s display.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

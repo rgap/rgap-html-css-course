@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — Minimal Scroll-In-Cell</title>
+    <style>
+      /* Minimal table scaffold: fixed layout for predictable column widths */
+      table {
+        border-collapse: collapse;
+        width: 340px; /* demo width for two columns */
+        table-layout: fixed; /* columns don't auto-grow with content */
+      }
+
+      /* Basic borders; no padding on cells (padding lives in inner divs) */
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 0;
+      }
+
+      /* Core idea:
+       - Keep a strict 40px viewport for every cell using an inner <div>
+       - Allow any number of wrapped lines (white-space: normal)
+       - When content exceeds 40px, enable scrolling instead of growing the row
+       - This avoids line clamps or single-line ellipses */
+      th > div,
+      td > div {
+        height: 40px; /* fixed visual height per cell */
+        overflow: auto; /* scroll only if needed */
+        white-space: normal; /* allow wrapping */
+        padding: 0 8px; /* small horizontal padding */
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — Minimal Scroll-In-Cell</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th><div>Column A</div></th>
+          <th><div>Column B (wraps; scrolls if taller than 40px)</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div>40px + ~1px collapsed border overlap.</div></td>
+          <td><div>Short text stays within 40px; no scrollbar.</div></td>
+        </tr>
+        <tr>
+          <td>
+            <div>This is a very long description that exceeds the 40px content box. Extra text becomes scrollable; the row height remains fixed.</div>
+          </td>
+          <td>
+            <div>
+              Another long cell — the inner wrapper keeps the visual height strict, while vertical scrolling makes the full content accessible.
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,62 +1,44 @@
-# Fixed Row Height (and why you see \~41 px)
+# Fixed Row Height — 2×2
 
-This lesson shows how `height` on table cells targets the **content box** (not the outer edge), so with collapsed borders the **visible** row ends up a bit taller than the declared height.
+**What this demo is**
 
-## What you'll learn
+A very simple table (2 columns × 2 rows) that sets `height: 40px` on every `<th>` and `<td>`. It keeps normal table behavior (columns align, borders collapse).
 
-- `height` on `<td>` applies to the **content box** only.
-- With `border-collapse: collapse`, top/bottom borders add to the visible height.
-- Why DevTools often reports \~**41 px** when you set **40 px**.
-- When/why rows still expand if content is taller, and how to clip without extra wrappers.
+**What you will see**
 
-## Explanation
+* Short cells look about **41px** tall (≈ 40px content height + \~1px from collapsed borders).
+* If a cell has **long text**, the **row grows taller** to fit the content. There is **no clipping** and **no ellipsis**.
 
-- **Why 40 px becomes \~41 px**
+**Why it behaves like this**
 
-  - `td { height: 40px; }` sets a 40 px **content** box.
+* In tables with `border-collapse: collapse`, the CSS `height` on a cell is a **minimum** for the **content box**.
+* The **visible** row height is the content height **plus** the shared collapsed borders (≈ +1px).
+* Because there is **no overflow control**, content is allowed to make the row taller.
 
-  - With `border-collapse: collapse` and `1px` borders, the visible row is:
+**When to use this pattern**
 
-    - 40 px (content) + \~1 px (collapsed border overlap) = **≈ 41 px**.
+* When you want a clean, default table where **all text is visible**.
+* When exact, fixed row heights are **not required**.
 
-  - That’s why your “40 px rows” measure around 41 px in DevTools.
+**Limitations**
 
-- **Exact 40 px (visible) — options**
+* You **cannot guarantee** a fixed visual row height. Long text will **expand** rows.
+* No truncation or ellipsis—rows grow instead of hiding text.
 
-  - Reduce the content height to account for borders, e.g. `td { height: 39px; }`.
-  - Or remove borders (no extra pixel).
-  - Be aware that fractional zoom/device pixel ratios can still show ±1 px variance.
-
-- **Overflow behavior on table cells**
-
-  - Many browsers treat `overflow` on `table-cell` inconsistently; rows may expand when content wraps.
-  - To clip **without wrappers**, apply a class directly to the `<td>`:
+**Key CSS used**
 
 ```css
-/* Use on <td class="clip"> ... */
-.clip {
-  overflow: hidden;
-  white-space: nowrap; /* prevent wrapping */
-  text-overflow: ellipsis;
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+th, td {
+  border: 1px solid #444;
+  padding: 0;
+  height: 40px; /* minimum content height; row can grow */
 }
 ```
 
-- **`min-height`**
+**Takeaway**
 
-  - `min-height` is ignored on table cells in most browsers.
-  - Prefer `height` + the `.clip` approach (or wrap content in a block element if you’re okay with an inner wrapper).
-
-## How to run
-
-Open `index.html`. You’ll see three rows:
-
-1. Short text — visible height **≈ 41 px** (40 px content + border).
-2. Long text (no `.clip`) — row **expands beyond ≈ 41 px** because wrapping makes the cell grow.
-3. Long text with `td.clip` — content is **clipped** to the 40 px content box; visible height still **≈ 41 px** due to border.
-
-## Notes
-
-- Table rows **won’t shrink below their content** unless you clip or prevent wrapping.
-- For strict fixed-height cells **without extra wrappers**, use a TD class like `.clip`.
-- If you truly need a visible **40 px**, compensate for borders (`height: 39px`) or remove borders altogether.
-- Small ±1 px differences are normal due to zoom and device-pixel rounding.
+This file is the **baseline**: it shows that setting `height` on table cells **does not** hard‑lock the row height. For strict heights you’ll need clipping, clamping, or an inner wrapper in later demos.

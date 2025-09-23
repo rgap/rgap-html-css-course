@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — 1×2 (ALL cells are display:block)</title>
+    <style>
+      table {
+        border-collapse: collapse; /* NOTE: this has no effect once cells stop being table-cells */
+        width: 300px;
+        table-layout: fixed;
+      }
+
+      /* ERROR DEMO: force ALL cells to be block boxes.
+         Side effects:
+         - They're no longer table-cells, so true table layout is lost (columns won't align).
+         - Border collapsing no longer applies to these blocks.
+         Resulting height math per row:
+         40px content height + 1px top border + 1px bottom border = **42px visible**. */
+      th,
+      td {
+        display: block; /* break table-cell semantics (intentional for demo) */
+        border: 1px solid #444; /* not collapsed when the element is block */
+        padding: 0; /* no default padding */
+
+        /* This sets the CONTENT box only. With blockified cells you get +2px from borders,
+           so the measured/visible row is exactly 42px. */
+        height: 40px;
+
+        /* Allow wrapping but clip beyond 40px content so you can see truncation.
+           (Remember: the *visual* row is 42px due to non-collapsing borders.) */
+        overflow: hidden;
+        white-space: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — 1×2 (ALL cells display:block)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Col A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visible row = 40px content + 2px borders.</td>
+        </tr>
+        <tr>
+          <td>
+            Long text inside a cell that is now a block box. Content is clipped at 40px (the content box), but the visible row is
+            <strong>42px</strong> because top and bottom borders each add 1px. Also, since ALL cells are <code>display:block</code>, you lose real
+            table layout: columns won’t line up.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

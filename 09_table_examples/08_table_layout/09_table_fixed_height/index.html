@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Fixed Row Height</title>
+    <title>Fixed Row Height — 2×2</title>
     <style>
       table {
         border-collapse: collapse;
@@ -10,51 +10,35 @@
         table-layout: fixed;
       }
 
+      /* NOTE: 'height' sets only the CONTENT box.
+         With collapsed 1px borders, the *minimum* visible row is ≈ 41px
+         (40px content + ~1px shared border), but the row WILL GROW with content. */
       th,
       td {
         border: 1px solid #444;
-        padding: 0; /* removed default padding for consistent height */
-        /* NOTE: 'height' applies to the cell's CONTENT box only.
-           With collapsed 1px borders, the visible row becomes roughly:
-             40px (content box) + 1px shared border ≈ 41px
-           If you need EXACTLY 40px visible, you'd have to compensate
-           (e.g., td {height: 39px}) or remove borders. */
-        height: 40px; /* content box ~40px; visible row ≈ 41px */
-      }
-
-      /* Wrapper for overflow control */
-      .clip {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+        padding: 0; /* remove default padding */
+        height: 40px; /* content-box target; NOT a hard cap */
       }
     </style>
   </head>
   <body>
-    <h1>Fixed Row Height</h1>
+    <h1>Fixed Row Height — 2×2</h1>
 
     <table>
       <thead>
         <tr>
-          <th>Example</th>
+          <th>Col A</th>
+          <th>Col B</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Visible row ≈ 41px: 40px content box + ~1px collapsed border overlap.</td>
+          <td>40px content + ~1px collapsed border.</td>
+          <td>Short text.</td>
         </tr>
         <tr>
-          <td>
-            This is a very long description that exceeds the 40px content box. The row grows taller than the ≈ 41px minimum (content + borders) to fit
-            all the text. This is a very long description that exceeds the 40px content box. The row grows taller than the ≈ 41px minimum to fit all
-            the content.
-          </td>
-        </tr>
-        <tr>
-          <td class="clip">
-            This is another long description. It is clipped at the 40px content box (visible row ≈ 41px due to borders). This is another long
-            description. It is clipped at the 40px content box (visible row ≈ 41px).
-          </td>
+          <td>Long text: the visible row grows beyond ≈ 41px because there is no clipping. The cell’s content determines the final height.</td>
+          <td>Another long description without overflow control; the visible row just grows with the content until all lines fit.</td>
         </tr>
       </tbody>
     </table>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Row Height — inner absolute (same multi-line span everywhere)</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        table-layout: fixed; /* keep tracks stable */
+        width: 560px;        /* demo width */
+      }
+
+      th, td {
+        border: 1px solid #444;
+        padding: 0;          /* remove default cell padding */
+        height: 40px;        /* exact CONTENT-box height for every cell */
+        position: relative;  /* positioning context for the inner span */
+      }
+
+      /* SAME pattern for headers & body:
+         - absolute span fills the cell
+         - allows wrapping within 40px
+         - hard-clips overflow (no multi-line ellipsis) */
+      th > span, td > span {
+        position: absolute; inset: 0;   /* fill the cell */
+        padding: 4px 10px;              /* inner padding lives here */
+        box-sizing: border-box;
+        line-height: 20px;              /* 2 × 20px = 40px */
+        height: 40px;                   /* lock exact content height */
+        white-space: normal;            /* allow wrapping */
+        overflow: hidden;               /* hard clip beyond 40px */
+      }
+
+      /* Notes / caveats:
+         - This locks row height visually (~40px content + ~1px collapsed border).
+         - Extra lines are hidden (no multi-line ellipsis); add a tooltip/title or “view more” UI if needed.
+         - Font/zoom/i18n can change where wraps occur; content may clip earlier. */
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Row Height — inner absolute (multi-line hard clip)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <span title="Column A">Column A</span>
+          </th>
+          <th>
+            <span title="Column B (long header that will wrap and hard-clip inside 40px)">
+              Column B (long header that will wrap and hard-clip inside 40px)
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span title="40px content box + ~1px collapsed border overlap">
+              40px content box + ~1px collapsed border overlap.
+            </span>
+          </td>
+          <td>
+            <span title="Header-sized cell demonstrating wrapping and hard clipping at 40px using an inner absolute span.">
+              Header-sized cell demonstrating wrapping and hard clipping at 40px using an inner absolute span.
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span title="This is a very long description that exceeds the 40px content box. Extra text is clipped; the row does not grow.">
+              This is a very long description that exceeds the 40px content box. Extra text is clipped; the row does not grow.
+            </span>
+          </td>
+          <td>
+            <span title="Another long cell — inner absolute keeps the visual height strict (≈ 41px visible with collapsed borders).">
+              Another long cell — inner absolute keeps the visual height strict (≈ 41px visible with collapsed borders).
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
