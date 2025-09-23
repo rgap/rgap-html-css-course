@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Row borders only</title>
+    <style>
+      /* ROW-ONLY separators
+       - Column separators: NO
+       - Row separators:    YES (horizontal)
+       Implementation: add a top border to every row after the first */
+      table {
+        border-collapse: collapse;
+        margin-bottom: 1.5em;
+      }
+      table tbody tr {
+        border-top: 1px solid black; /* horizontal lines between body rows (and under header) */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Row borders only</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1</td>
+          <td>Row 1</td>
+        </tr>
+        <tr>
+          <td>Row 2</td>
+          <td>Row 2</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
