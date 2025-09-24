@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Border Collapse vs Separate</title>
+    <style>
+      table {
+        border: 1px solid black;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px 12px;
+      }
+
+      table.separate {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Border Separate with border spacing 0</h1>
+
+    <!-- Separate borders -->
+    <table class="separate">
+      <thead>
+        <tr>
+          <th>Separate A</th>
+          <th>Separate B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
