@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table — Auto & Fixed</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        /* width: 500px; */
+        /* table-layout: fixed;  */ /* respect colgroup track sizes */
+
+        /* These don't seem required because:
+            - With table-layout:auto (the default), most browsers still *prefer*
+              <colgroup> widths when content is short and the sum (150 + 350)
+              fits comfortably in the available space. So the result often *looks*
+              fixed even without these lines.
+
+           When they *do* matter:
+            - table-layout: fixed;
+              Makes the <col> widths authoritative tracks. The browser does not
+              re-measure cell content to adjust column widths. Faster layout and
+              guarantees columns stay 150/350 even if cells have huge content.
+
+            - width: 500px;
+              Sets the table box to exactly the sum of your columns (150 + 350).
+              Without this, a block table with width:auto will normally expand to the
+              container’s width, and any extra space will be distributed across columns,
+              so they won’t *look* strictly 150/350 anymore.
+
+           Practical rule of thumb:
+            - If you want hard, predictable tracks regardless of content: keep
+              table-layout: fixed.
+            - If you also want the table to be exactly 500px wide (no extra stretch),
+              set width: 500px (or use display:inline-table; to shrink-wrap).
+        */
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+      }
+      table .col-1 {
+        width: 150px;
+      }
+      table .col-2 {
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Fixed width attempt</h2>
+
+    <table>
+      <colgroup>
+        <col class="col-1" />
+        <col class="col-2" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P100</td>
+          <td>Very very long product description that will wrap inside the fixed column width and won’t stretch the layout.</td>
+        </tr>
+        <tr>
+          <td>P200</td>
+          <td>Very very long product description that will wrap inside the fixed column width and won’t stretch the layout.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

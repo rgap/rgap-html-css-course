@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table — Auto & Fixed</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+      }
+      table th.col-1 {
+        width: 150px;
+      }
+      table th.col-2 {
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Fixed width attempt</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-1">Code</th>
+          <th class="col-2">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P100</td>
+          <td>Very very long product description that will wrap inside the fixed column width and won’t stretch the layout.</td>
+        </tr>
+        <tr>
+          <td>P200</td>
+          <td>Very very long product description that will wrap inside the fixed column width and won’t stretch the layout.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
